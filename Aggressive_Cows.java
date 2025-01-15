@@ -28,39 +28,38 @@ class GFG {
 }
 // } Driver Code Ends
 
-
 // User function Template for Java
 class Solution {
     public static int aggressiveCows(int[] stalls, int k) {
         // code here
         int res = 0;
-        
+
         Arrays.sort(stalls);
-        int s = 1, e = stalls[stalls.length-1]-stalls[0];
-        
-        while(s<=e){
-            int mid = s + (e-s)/2;
-            
-            if(valid(stalls, k, mid)){
+        int s = 1, e = stalls[stalls.length - 1] - stalls[0];
+
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
+
+            if (valid(stalls, k, mid)) {
                 res = mid;
-                s = mid+1;
-            }else{
-                e = mid-1;
+                s = mid + 1;
+            } else {
+                e = mid - 1;
             }
-            
+
         }
         return res;
     }
-    
-    static boolean valid(int[] nums, int k, int dist){
-        int cnt = 1,prev = nums[0];
-        
-        for(int i = 1; i<nums.length; i++ ){
-            if(nums[i] - prev >= dist ){
+
+    static boolean valid(int[] nums, int k, int dist) {
+        int cnt = 1, prev = nums[0];
+
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] - prev >= dist) {
                 cnt++;
                 prev = nums[i];
             }
         }
-        return cnt>=k;
+        return cnt >= k;
     }
 }
