@@ -1,30 +1,25 @@
 class Solution {
     public int mySqrt(int x) {
-        // Corner cases.
-        if (x == 0 || x == 1) return x;
-
-        // Find the number which square less than x.
-        int y = x;
-        while (true) {
-            y = y / 2;
-            if ((y * y) < 0 || (y * y) / y != y) continue; // handle int overflow
-            if ((y * y) > 0 && (y * y) <= x) break;
+        if(x == 0 || x == 1 ){
+            return x;
         }
+        int s = 0, e = x, ans = 0;
 
-        // Result found.
-        if (y * y == x) return y;
+        while (s <= e) {
+            int mid = s + (e - s) / 2;
 
-        // Search for result using difference of squares formula.
-        int j = x - (y * y);
-        while (true) {
-            j = j - (y + y + 1);
-            if (j >= 0) {
-                y = y + 1;
+            long square = (long)mid * mid;
+            
+            if (square == x) {
+                return mid;
+            }
+            if (square < x) {
+                ans = mid;
+                s = mid + 1;
             } else {
-                break;
+                e = mid - 1;
             }
         }
-
-        return y;
+        return ans;
     }
 }
