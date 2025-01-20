@@ -16,22 +16,20 @@ class Solution {
         map.put("8", "tuv");
         map.put("9", "wxyz");
 
-        count(0, new StringBuilder(), map, digits, list);
+        count(0, "", map, digits, list);
         return list;
     }
 
-    static void count(int idx, StringBuilder str, HashMap<String, String> map, String digits, List<String> list) {
+    static void count(int idx, String str, HashMap<String, String> map, String digits, List<String> list) {
 
         if (idx >= digits.length()) {
-            list.add(str.toString());
+            list.add(str);
             return;
         }
         String val = map.get(String.valueOf(digits.charAt(idx)));
 
         for (int i = 0; i < val.length(); i++) {
-            str.append(val.charAt(i));
-            count(idx + 1, str, map, digits, list);
-            str.deleteCharAt(str.length() - 1);
+            count(idx + 1, str + val.charAt(i), map, digits, list);
         }
 
     }
