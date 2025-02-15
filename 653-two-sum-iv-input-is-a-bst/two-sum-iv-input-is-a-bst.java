@@ -76,7 +76,7 @@ class Solution {
 
         int lv = l.next(), rv = r.next();
         int sum = lv + rv;
-        while (true) {
+        while (lv != rv) {
             sum = lv + rv;
             if (sum == k) {
                 return true;
@@ -84,26 +84,13 @@ class Solution {
             if (sum < k) {
                 if (l.hasNext()) {
                     lv = l.next();
-                    if(lv == rv){
-                        if(l.hasNext()){
-                            lv = l.next();
-                        }else{
-                            break;
-                        }
-                    }
+                    
                 }else{
                     break;
                 }
             }else {
                 if(r.hasNext()){
                     rv = r.next();
-                    if(lv == rv){
-                        if(r.hasNext()){
-                            rv = r.next();
-                        }else{
-                            break;
-                        }
-                    }
                 }else{
                     break;
                 }
