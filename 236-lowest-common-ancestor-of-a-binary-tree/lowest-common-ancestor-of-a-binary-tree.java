@@ -1,43 +1,23 @@
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode(int x) { val = x; }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
  * }
  */
 class Solution {
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        List<TreeNode> a = new ArrayList<>();
-        List<TreeNode> b = new ArrayList<>();
-
-        getPath(root, p, a);
-        getPath(root, q, b);
-
-        int i = 0;
-        for (; i < a.size() && i < b.size(); i++) {
-            if (a.get(i) != b.get(i))
-                break;
+        if(root == null || root.val == p.val || root.val == q.val){
+            return root;
         }
 
-        return a.get(i - 1);
-    }
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
 
-    public boolean getPath(TreeNode root, TreeNode t, List<TreeNode> list) {
-        if (root == null)
-            return false;
-        list.add(root);
-        if (root.val == t.val)
-            return true;
-
-        boolean left = getPath(root.left, t, list);
-        boolean right = getPath(root.right, t, list);
-
-        if (left || right) {
-            return true;
-        }
-        list.remove(list.size() - 1);
-        return false;
+        if(left == null) return right;
+        if(right == null) return left;
+        return root;
     }
 }
