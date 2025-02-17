@@ -24,17 +24,16 @@ class Solution {
         if (root == null) {
             return;
         }
+
+        s += "->" + root.val;
         if (root.left == null && root.right == null) {
-            if (s.length() == 0) {
-                list.add(String.valueOf(root.val));
-                return;
-            }
-            s += "->" + root.val;
             list.add(s.substring(2));
             return;
+        } else {
+            helper(root.left, list, s );
+            helper(root.right, list, s );
         }
-        helper(root.left, list, s + "->" + root.val);
-        helper(root.right, list, s + "->" + root.val);
+        s = s.substring(0, s.length()-3);
 
     }
 }
