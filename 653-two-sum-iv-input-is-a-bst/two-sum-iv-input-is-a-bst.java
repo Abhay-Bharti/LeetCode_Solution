@@ -1,102 +1,47 @@
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- * int val;
- * TreeNode left;
- * TreeNode right;
- * TreeNode() {}
- * TreeNode(int val) { this.val = val; }
- * TreeNode(int val, TreeNode left, TreeNode right) {
- * this.val = val;
- * this.left = left;
- * this.right = right;
- * }
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode() {}
+ *     TreeNode(int val) { this.val = val; }
+ *     TreeNode(int val, TreeNode left, TreeNode right) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
  * }
  */
 class Solution {
-    class BSTIteratorLeft {
-        Stack<TreeNode> st = new Stack<>();
 
-        public BSTIteratorLeft(TreeNode root) {
-            while (root != null) {
-                st.push(root);
-                root = root.left;
-            }
+    public void inorder(TreeNode root, List<Integer> list){
+        if(root == null){
+            return;
         }
 
-        public int next() {
-            TreeNode temp = st.pop();
-            TreeNode node = temp.right;
-
-            while (node != null) {
-                st.push(node);
-                node = node.left;
-            }
-            return temp.val;
-        }
-
-        public boolean hasNext() {
-            return !st.isEmpty();
-        }
-    }
-
-    class BSTIteratorRight {
-        Stack<TreeNode> st = new Stack<>();
-
-        public BSTIteratorRight(TreeNode root) {
-            while (root != null) {
-                st.push(root);
-                root = root.right;
-            }
-        }
-
-        public int next() {
-            TreeNode temp = st.pop();
-            TreeNode node = temp.left;
-
-            while (node != null) {
-                st.push(node);
-                node = node.right;
-            }
-            return temp.val;
-        }
-
-        public boolean hasNext() {
-            return !st.isEmpty();
-        }
+        inorder(root.left, list);
+        list.add(root.val);
+        inorder(root.right, list);
     }
 
     public boolean findTarget(TreeNode root, int k) {
-        if(root.left == null && root.right == null && root.val != k){
-            return false;
-        }
+        List<Integer> list = new ArrayList<>();
+        inorder(root, list);
 
-        BSTIteratorLeft l = new BSTIteratorLeft(root);
-        BSTIteratorRight r = new BSTIteratorRight(root);
-
-        int lv = l.next(), rv = r.next();
-        int sum = lv + rv;
-        while (lv != rv) {
-            sum = lv + rv;
-            if (sum == k) {
+        int s = 0, e = list.size()-1;
+        int sum = list.get(s)+list.get(e);
+        while(s<e){
+            sum = list.get(s)+list.get(e);
+            if(sum == k){
                 return true;
             }
-            if (sum < k) {
-                if (l.hasNext()) {
-                    lv = l.next();
-                    
-                }else{
-                    break;
-                }
-            }else {
-                if(r.hasNext()){
-                    rv = r.next();
-                }else{
-                    break;
-                }
+            if(sum < k){
+                s++;
+            }else{
+                e--;
             }
         }
         return false;
     }
-
 }
