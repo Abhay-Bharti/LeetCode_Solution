@@ -30,7 +30,6 @@ class Solution {
         }
 
         if(root.left == null && root.right == null){
-            System.out.println(sum + " " + num);
             sum += num;
             return;
         }
