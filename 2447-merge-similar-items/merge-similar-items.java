@@ -9,24 +9,24 @@ class Solution {
         while(a < items1.length && b < items2.length){
             
             if(items1[a][0] == items2[b][0]){
-                res.add(new ArrayList<>(Arrays.asList(items1[a][0] , items1[a][1]+items2[b][1])));
+                res.add(Arrays.asList(items1[a][0] , items1[a][1]+items2[b][1]));
                 a++;
                 b++;
             }else if(items1[a][0] < items2[b][0]){
-                res.add(new ArrayList<>(Arrays.asList(items1[a][0], items1[a][1])));
+                res.add(Arrays.asList(items1[a][0], items1[a][1]));
                 a++;
             }else{
-                res.add(new ArrayList<>(Arrays.asList(items2[b][0], items2[b][1])));
+                res.add(Arrays.asList(items2[b][0], items2[b][1]));
                 b++;
             }
         }
 
         while(a<items1.length){
-                res.add(new ArrayList<>(Arrays.asList(items1[a][0], items1[a][1])));
+                res.add(Arrays.asList(items1[a][0], items1[a][1]));
                 a++;
         }
         while(b<items2.length){
-                res.add(new ArrayList<>(Arrays.asList(items2[b][0], items2[b][1])));
+                res.add(Arrays.asList(items2[b][0], items2[b][1]));
                 b++;
         }
         return res;
