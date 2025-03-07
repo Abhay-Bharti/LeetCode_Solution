@@ -1,31 +1,24 @@
 
 class SmallestInfiniteSet {
-    PriorityQueue<Integer> pq;
-    HashSet<Integer> set;
+    private TreeSet<Integer> set;
+    private int current = 1;
 
     public SmallestInfiniteSet() {
-        pq = new PriorityQueue<>();
-        set = new HashSet<>();
-
-        for(int i = 1; i <= 1000; i++){
-            pq.add(i);
-            set.add(i);
-        }
+        set = new TreeSet<>();
     }
 
     public int popSmallest() {
-        if (!pq.isEmpty()) {
-            int n = pq.poll();
+        if (!set.isEmpty()) {
+            int n = set.first();
             set.remove(n);
             return n;
         }
-        return -1;
+        return current++;
     }
 
     public void addBack(int num) {
-        if (!set.contains(num)) {
+        if(num < current){
             set.add(num);
-            pq.add(num);
         }
     }
 }
