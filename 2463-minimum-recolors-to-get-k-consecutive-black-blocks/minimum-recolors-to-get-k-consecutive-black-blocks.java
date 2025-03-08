@@ -12,7 +12,6 @@ class Solution {
             if (i >= k - 1) {
                 ans = Math.min(ans, count);
             }
-            System.out.println(count);
         }
         return ans;
     }
