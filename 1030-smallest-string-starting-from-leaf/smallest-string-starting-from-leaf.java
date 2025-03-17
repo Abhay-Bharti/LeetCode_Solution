@@ -27,24 +27,20 @@ class Solution {
             return;
         }
 
+        sb.insert(0, (char)(root.val + 'a'));
         if(root.left == null && root.right == null){
-            sb.append((char)(root.val+'a'));
-            if(ans.equals("")){
-                ans = sb.reverse().toString();
-            }else if(ans.compareTo(sb.reverse().toString()) > 0){
+            if(ans.equals("") || ans.compareTo(sb.toString()) > 0){
                 ans = sb.toString();
             }
-            sb.reverse();
-            sb.deleteCharAt(sb.length()-1);
+            sb.deleteCharAt(0);
             return;
         }
 
-        sb.append((char)(root.val + 'a'));
         helper(root.left, sb);
-        sb.deleteCharAt(sb.length()-1);
-        sb.append((char)(root.val + 'a'));
+        sb.deleteCharAt(0);
+        sb.insert(0, (char)(root.val + 'a'));
         helper(root.right, sb);
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(0);
 
     }
 }
