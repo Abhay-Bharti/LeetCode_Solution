@@ -21,7 +21,7 @@ class Solution {
 
         while (!q.isEmpty()) {
             int size = q.size();
-
+            sum = 0;
             for (int i = 0; i < size; i++) {
                 TreeNode curr = q.poll();
                 if (curr.left != null) {
@@ -32,8 +32,6 @@ class Solution {
                 }
                 sum += curr.val;
             }
-            if(q.isEmpty()) return sum;
-            else sum = 0;
         }
         return sum;
     }
