@@ -1,20 +1,16 @@
 class Solution {
     public boolean canConstruct(String ransomNote, String magazine) {
-        HashMap<Character, Integer> map = new HashMap<>();
+        char[] freq = new char[26];
 
         for(char ch : magazine.toCharArray()){
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            freq[ch-'a']++;
         }
 
         for(char ch : ransomNote.toCharArray()){
-            if(map.containsKey(ch)){
-                if(map.get(ch) == 1){
-                    map.remove(ch);
-                }else{
-                    map.put(ch, map.get(ch)-1);
-                }
-            }else{
+            if(freq[ch-'a'] == 0){
                 return false;
+            }else{
+                freq[ch-'a']--;
             }
         }
 
