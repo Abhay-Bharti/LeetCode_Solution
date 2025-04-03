@@ -19,7 +19,6 @@ class Solution {
         while(t != null){
             if(i % k == 0){
                 st.push(t.val);
-                    // System.out.println(st);
                 while(!st.isEmpty()){
                     temp.next = new ListNode(st.pop());
                     temp = temp.next;
@@ -39,7 +38,7 @@ class Solution {
             newNode.next = temp;
             temp = newNode;
         }
-        // System.out.println(st);
+        
         return dummy.next;
     }
 }
