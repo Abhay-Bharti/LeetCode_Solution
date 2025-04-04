@@ -32,7 +32,6 @@ class Solution {
             temp = temp.next;
         }
 
-            System.out.println(min + " " + max);
         if(min == Integer.MAX_VALUE || max == Integer.MIN_VALUE)
             return new int[]{-1,-1};
         
