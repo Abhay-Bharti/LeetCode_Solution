@@ -16,7 +16,6 @@ class Solution {
             return 0;
         }
 
-        System.out.println(i);
         return (i+1) % 3 == 0 ? (i+1)/3 : (i+1)/3 + 1;
 
     }
