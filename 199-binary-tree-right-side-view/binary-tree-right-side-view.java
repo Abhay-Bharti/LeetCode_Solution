@@ -14,57 +14,30 @@
  * }
  */
 class Solution {
-
-    static class Info{
-        TreeNode node;
-        int vd;
-
-        public Info(TreeNode node, int vd){
-            this.node = node;
-            this.vd = vd;
-        }
-    }
-
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        
-        if(root == null){
+        ArrayList<Integer> list = new ArrayList<>();
+        if(root == null)
             return list;
-        }
-        
-        Queue<Info> q = new LinkedList<>();
-        Map<Integer, TreeNode> map = new HashMap<>();
 
-        int max = 0;
-        q.add(new Info(root, 0));
-        q.add(null);
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
 
         while(!q.isEmpty()){
-            Info curr = q.poll();
+            int size = q.size();
 
-            if(curr == null){
-                if(q.isEmpty()){
-                    break;
-                }else{
-                    q.add(null);
+            for(int i = 0; i<size; i++){
+                TreeNode curr = q.poll();
+                if(i == 0){
+                    list.add(curr.val);
                 }
-            }else{
-                if(!map.containsKey(curr.vd)){
-                    map.put(curr.vd, curr.node);
+
+                if(curr.right != null){
+                    q.add(curr.right);
                 }
-                if(curr.node.right!=null){
-                    q.add(new Info(curr.node.right, curr.vd+1));
-                    max = Math.max(max, curr.vd+1);
-                }
-                if(curr.node.left!=null){
-                    q.add(new Info(curr.node.left, curr.vd+1));
-                    max = Math.max(max, curr.vd+1);
+                if(curr.left != null){
+                    q.add(curr.left);
                 }
             }
-        }
-
-        for(int i = 0; i<=max; i++ ){
-            list.add(map.get(i).val);
         }
 
         return list;
