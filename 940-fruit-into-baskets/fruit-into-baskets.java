@@ -5,7 +5,7 @@ class Solution {
 
         while (r < fruits.length) {
             map.put(fruits[r], map.getOrDefault(fruits[r], 0) + 1);
-            while (map.size() > 2) {
+            if (map.size() > 2) {
                 if (map.get(fruits[l]) == 1) {
                     map.remove(fruits[l]);
                 } else {
@@ -13,7 +13,8 @@ class Solution {
                 }
                 l++;
             }
-            maxLen = Math.max(maxLen, r - l + 1);
+            if(map.size() <= 2)
+                maxLen = Math.max(maxLen, r - l + 1);
             r++;
         }
 
