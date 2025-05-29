@@ -1,28 +1,16 @@
 class Solution {
     public int findNonMinOrMax(int[] nums) {
-        if(nums.length <= 2){
-            return -1;
-        }
+    
+    if(nums.length<=2) return -1;
 
-        int max = -1, min = -1, m = -1, n = 101;
+    int a=nums[0], b=nums[1], c=nums[2];
 
-        for(int i = 0; i<nums.length; i++){
-            if(nums[i] > m ){
-                max = i;
-                m = nums[i];
-            }
-            if(nums[i] < n){
-                min = i;
-                n = nums[i];
-            }
-        }
+    if((a>b && a<c) || (a<b && a>c)) return a;
 
-        for(int i = 0; i<nums.length; i++){
-            if(i != max && i != min){
-                return nums[i];
-            }
-        }
+    if((b>a && b<c) || (b<a && b>c)) return b;
 
-        return -1;
+    return c;
+    
     }
+
 }
