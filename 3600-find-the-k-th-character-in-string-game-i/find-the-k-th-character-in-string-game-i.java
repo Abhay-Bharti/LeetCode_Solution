@@ -1,18 +1,13 @@
 class Solution {
     public char kthCharacter(int k) {
-        StringBuilder word = new StringBuilder("a");
-
-        while(word.length() <= k){
-            int len = word.length();
-            for(int i = 0; i<len; i++){
-                if(word.charAt(i) != 'z'){
-                    word.append((char)(word.charAt(i) + 1));
-                }else{
-                    word.append('a');
-                }
+        String bit = Integer.toBinaryString(k - 1);
+        int count = 0;
+        for (char c : bit.toCharArray()) {
+            if (c == '1') {
+                count++;
             }
         }
-        
-        return word.charAt(k-1);
+
+        return (char)('a' + count);
     }
 }
