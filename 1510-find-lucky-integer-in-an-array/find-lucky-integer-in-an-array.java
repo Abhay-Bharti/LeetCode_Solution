@@ -8,7 +8,7 @@ class Solution {
 
         int ans = -1;
 
-        for(int i: arr){
+        for(int i: map.keySet()){
             if(map.get(i) == i && i > ans){
                 ans = i;
             }
