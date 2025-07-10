@@ -13,6 +13,10 @@ class Solution {
     public int[] dc = {0, 0, -1, 1};
 
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        if(color == image[sr][sc]){
+            return image;
+        }
+        
         int initial = image[sr][sc];
         
         Queue<Pair> q = new LinkedList<>();
