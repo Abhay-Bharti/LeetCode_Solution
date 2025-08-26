@@ -11,6 +11,10 @@ class Solution {
         if(arr[0].equals("0"))
             return "0";
 
-        return String.join("", arr);
+        StringBuilder sb = new StringBuilder();
+        for (String s : arr) {
+            sb.append(s);
+        }
+        return sb.toString();
     }
 }
