@@ -1,21 +1,22 @@
 class Solution {
     public int maxFreqSum(String s) {
-        int m1 = 0, m2 = 0;
-        int[] freq = new int[26];
+        char vowel, conso;
+        int a = 0, b = 0;
+        String v = "aeoiou";
+        HashMap<Character, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            freq[ch - 'a']++;
-
-            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                if (freq[ch - 'a'] > m1) {
-                    m1 = freq[ch - 'a'];
-                }
-            } else if (freq[ch - 'a'] > m2) {
-                m2 = freq[ch - 'a'];
+        for(char c: s.toCharArray()){
+            map.put(c, map.getOrDefault(c, 0) + 1);
+            
+            if( v.indexOf(c) >= 0 && map.get(c) > a){
+                vowel = c;
+                a = map.get(c);
+            }else if( v.indexOf(c) < 0 && map.get(c) > b ){
+                conso = c;
+                b = map.get(c);
             }
         }
 
-        return m1 + m2;
+        return a+b;
     }
 }
