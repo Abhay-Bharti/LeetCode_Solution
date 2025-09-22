@@ -3,7 +3,7 @@ class Solution {
         Arrays.sort(g);
         Arrays.sort(s);
 
-        int greed = 0, size = 0, count = 0;
+        int greed = 0, size = 0;
 
         while (greed < g.length && size < s.length) {
             if (g[greed] <= s[size]) {
