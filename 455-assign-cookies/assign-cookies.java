@@ -5,16 +5,13 @@ class Solution {
 
         int greed = 0, size = 0, count = 0;
 
-        while(greed < g.length && size < s.length){
-            if(g[greed] <= s[size]){
-                count++;
+        while (greed < g.length && size < s.length) {
+            if (g[greed] <= s[size]) {
                 greed++;
-                size++;
-            }else{
-                size++;
             }
+            size++;
         }
 
-        return count;
+        return greed;
     }
 }
