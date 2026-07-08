@@ -12,17 +12,15 @@ func sumAndMultiply(n int) int64 {
 	for pow > 0 {
 		a := int64(n / pow)
 
+		n %= pow
+		pow /= 10
+
         if a == 0 {
-            n %= pow
-		    pow /= 10
             continue
         }
 
 		x = a + x*10
 		sum += a
-
-		n %= pow
-		pow /= 10
 	}
 
 	return sum * x
