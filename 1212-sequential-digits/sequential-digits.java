@@ -21,7 +21,6 @@ class Solution {
             for (int j = t; j <= 9; j++) {
                 tmp %= pow;
                 tmp = tmp * 10 + j;
-                System.out.printf("i = %d, pow = %d, tmp = %d, j = %d\n", i, pow, tmp, j);
                 if (tmp > high) {
                     break;
                 } else {
